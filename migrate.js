@@ -4,13 +4,13 @@
 // =====================================================================
 import fs from "fs";
 import path from "path";
-import pool from "../config/database.js";
+import pool from "./config/database.js";
 
 async function migrate() {
-  const schemaPath = path.resolve("database/schema.sql");
+  const schemaPath = path.resolve("schema.sql");
   const sql = fs.readFileSync(schemaPath, "utf8");
 
-  console.log("[migrate] Applying database/schema.sql ...");
+  console.log("[migrate] Applying schema.sql ...");
   try {
     await pool.query(sql);
     console.log("[migrate] Schema applied successfully.");
@@ -23,3 +23,4 @@ async function migrate() {
 }
 
 migrate();
+
